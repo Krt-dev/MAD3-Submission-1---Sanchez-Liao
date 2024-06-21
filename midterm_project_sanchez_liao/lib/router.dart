@@ -7,12 +7,10 @@ import 'routing/home.dart';
 import "package:get_it/get_it.dart";
 
 class GlobalRouter {
-  // Static method to initialize the singleton in GetIt
   static void initialize() {
     GetIt.instance.registerSingleton<GlobalRouter>(GlobalRouter());
   }
 
-  // Static getter to access the instance through GetIt
   static GlobalRouter get instance => GetIt.instance<GlobalRouter>();
 
   static GlobalRouter get I => GetIt.instance<GlobalRouter>();
@@ -67,7 +65,7 @@ class GlobalRouter {
                 GoRoute(
                     parentNavigatorKey: _shellNavigatorKey,
                     path: "/prof",
-                    name: "Wrapped Index",
+                    name: "Profile Screen",
                     builder: (context, _) {
                       return const ProfileScreen();
                     }),

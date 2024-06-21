@@ -12,12 +12,29 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Placeholder"),
-      ),
-      body: const Center(
-        child: Text("Placeholder"),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Profile Screen')),
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              //logic here
+            },
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.blue, // Text color
+              shadowColor: Colors.black, // Shadow color
+              elevation: 5, // Elevation
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 16, vertical: 8), // Padding
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8), // Rounded corners
+              ),
+            ),
+            child: const Text('Log out'),
+          ),
+        ),
       ),
     );
   }
