@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:go_router/go_router.dart';
 import 'package:midterm_project_sanchez_liao/router.dart';
 import 'package:midterm_project_sanchez_liao/routing/homeScreen.dart';
-import 'package:form_field_validator/form_field_validator.dart';
+// import 'package:form_field_validator/form_field_validator.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String route = "/auth";
@@ -18,23 +18,23 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  final emailValidator = MultiValidator([
-    RequiredValidator(errorText: 'Email is required'),
-    EmailValidator(errorText: 'Enter a valid email address'),
-    MaxLengthValidator(32, errorText: "Username cannot exceed 32 characters"),
-    PatternValidator(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-        errorText: 'Username cannot contain special characters'),
-  ]);
+  // final emailValidator = MultiValidator([
+  //   RequiredValidator(errorText: 'Email is required'),
+  //   EmailValidator(errorText: 'Enter a valid email address'),
+  //   MaxLengthValidator(32, errorText: "Username cannot exceed 32 characters"),
+  //   PatternValidator(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+  //       errorText: 'Username cannot contain special characters'),
+  // ]);
 
-  final passwordValidator = MultiValidator([
-    RequiredValidator(errorText: 'Password is required'),
-    MinLengthValidator(8,
-        errorText: 'Password must be at least 8 characters long'),
-    PatternValidator(r'(?=.*[A-Z])',
-        errorText: 'Password must contain at least one uppercase letter'),
-    PatternValidator(r'(?=.*?[#?!@$%^&*-])',
-        errorText: 'Password must contain at least one special character'),
-  ]);
+  // final passwordValidator = MultiValidator([
+  //   RequiredValidator(errorText: 'Password is required'),
+  //   MinLengthValidator(8,
+  //       errorText: 'Password must be at least 8 characters long'),
+  //   PatternValidator(r'(?=.*[A-Z])',
+  //       errorText: 'Password must contain at least one uppercase letter'),
+  //   PatternValidator(r'(?=.*?[#?!@$%^&*-])',
+  //       errorText: 'Password must contain at least one special character'),
+  // ]);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 decoration: const InputDecoration(
                   labelText: 'Username',
                 ),
-                validator: emailValidator.call,
+                // validator: emailValidator.call,
               ),
               TextFormField(
                 controller: _passwordController,
@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   labelText: 'Password',
                 ),
                 obscureText: true,
-                validator: passwordValidator.call,
+                // validator: passwordValidator.call,
               ),
               ElevatedButton(
                 onPressed: () {
