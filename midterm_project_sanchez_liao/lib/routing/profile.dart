@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:midterm_project_sanchez_liao/router.dart';
+import 'package:midterm_project_sanchez_liao/routing/login.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String route = "/prof";
@@ -20,6 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: ElevatedButton(
             onPressed: () {
               //logic here
+              GlobalRouter.I.router.go(LoginScreen.route);
             },
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
