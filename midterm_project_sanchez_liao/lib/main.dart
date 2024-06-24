@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:midterm_project_sanchez_liao/controller/auth_controller.dart';
 import 'package:midterm_project_sanchez_liao/router.dart';
 
 void main() async {
-  //AuthController.initialize();
+  AuthController.initialize();
   GlobalRouter.initialize();
   //await AuthController.I.loadSession();
   runApp(const MyApp());

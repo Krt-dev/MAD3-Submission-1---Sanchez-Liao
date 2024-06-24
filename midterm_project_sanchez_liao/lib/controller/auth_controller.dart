@@ -14,12 +14,17 @@ class AuthController with ChangeNotifier {
   AuthState state = AuthState.unauthenticated;
   SimulatedAPI api = SimulatedAPI();
 
-  login(String username, String password) async {
-    bool isLoggedIn = await api.login(username, password);
-
-    if (isLoggedIn) {
-      state = AuthState.authenticated;
-      notifyListeners();
+  Future<void> login(String username, String password) async {
+    try {
+      bool isLoggedIn = await api.login(username, password);
+      if (isLoggedIn) {
+        state = AuthState.authenticated;
+        print(state);
+        notifyListeners();
+      }
+    } catch (e) {
+      print(e.toString());
+      throw Exception("Login failed: ${e.toString()}");
     }
   }
 }
@@ -30,9 +35,12 @@ class SimulatedAPI {
   Map<String, String> users = {"testUser": "12345678ABCabc"};
 
   Future<bool> login(String username, String password) async {
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 3));
     if (users[username] == null) {
       throw Exception("User does not exist");
+    }
+    if (users[username] != password) {
+      throw Exception("Password does not match");
     }
     return users[username] == password;
   }

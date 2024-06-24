@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:midterm_project_sanchez_liao/controller/auth_controller.dart';
+import 'package:midterm_project_sanchez_liao/enum/enum.dart';
 import 'package:midterm_project_sanchez_liao/routing/homeScreen.dart';
 import 'package:midterm_project_sanchez_liao/routing/profile.dart';
 import 'routing/login.dart';
@@ -19,22 +23,22 @@ class GlobalRouter {
   late GlobalKey<NavigatorState> _rootNavigatorKey;
   late GlobalKey<NavigatorState> _shellNavigatorKey;
 
-  // FutureOr<String?> handleRedirect(
-  //     BuildContext context, GoRouterState state) async {
-  //   if (AuthController.I.state == AuthState.authenticated) {
-  //     if (state.matchedLocation == LoginScreen.route) {
-  //       return HomeScreen.route;
-  //     }
-  //     return null;
-  //   }
-  //   if (AuthController.I.state != AuthState.authenticated) {
-  //     if (state.matchedLocation == LoginScreen.route) {
-  //       return null;
-  //     }
-  //     return LoginScreen.route;
-  //   }
-  //   return null;
-  // }
+  FutureOr<String?> handleRedirect(
+      BuildContext context, GoRouterState state) async {
+    if (AuthController.I.state == AuthState.authenticated) {
+      if (state.matchedLocation == LoginScreen.route) {
+        return HomeScreen.route;
+      }
+      return null;
+    }
+    if (AuthController.I.state != AuthState.authenticated) {
+      if (state.matchedLocation == LoginScreen.route) {
+        return null;
+      }
+      return LoginScreen.route;
+    }
+    return null;
+  }
 
   GlobalRouter() {
     _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -42,8 +46,8 @@ class GlobalRouter {
     router = GoRouter(
         navigatorKey: _rootNavigatorKey,
         initialLocation: LoginScreen.route,
-        // redirect: handleRedirect,
-        // refreshListenable: AuthController.I,
+        redirect: handleRedirect,
+        refreshListenable: AuthController.I,
         routes: [
           GoRoute(
               parentNavigatorKey: _rootNavigatorKey,

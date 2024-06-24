@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:midterm_project_sanchez_liao/controller/auth_controller.dart';
 // import 'package:go_router/go_router.dart';
 import 'package:midterm_project_sanchez_liao/router.dart';
 import 'package:midterm_project_sanchez_liao/routing/homeScreen.dart';
@@ -65,16 +66,31 @@ class _LoginScreenState extends State<LoginScreen> {
                 // validator: passwordValidator.call,
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState?.validate() ?? false) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Logged in',
-                            style: TextStyle(color: Colors.white)),
-                        backgroundColor: Colors.green,
-                      ),
-                    );
-                    GlobalRouter.I.router.go(HomeScreen.route);
+                    try {
+                      await AuthController.I.login(
+                        _usernameController.text.trim(),
+                        _passwordController.text.trim(),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Logged in',
+                              style: TextStyle(color: Colors.white)),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            e.toString(),
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
                   }
                 },
                 child: const Text("Login"),
