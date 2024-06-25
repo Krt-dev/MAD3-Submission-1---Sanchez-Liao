@@ -27,6 +27,10 @@ class AuthController with ChangeNotifier {
       throw Exception("Login failed: ${e.toString()}");
     }
   }
+
+  void logout() {}
+
+  Future<void> loadSession(String dataBox) async {}
 }
 
 //mockup
