@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:midterm_project_sanchez_liao/controller/auth_controller.dart';
+import 'package:midterm_project_sanchez_liao/models/box.dart';
+import 'package:midterm_project_sanchez_liao/models/user.dart';
 // import 'package:go_router/go_router.dart';
 import 'package:midterm_project_sanchez_liao/router.dart';
 import 'package:midterm_project_sanchez_liao/routing/homeScreen.dart';
@@ -73,6 +75,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         _usernameController.text.trim(),
                         _passwordController.text.trim(),
                       );
+                      //adding the user into the hivebox with the key as its usernmae
+                      boxUsers.add(User(
+                          username: _usernameController.text.trim(),
+                          password: _passwordController.text.trim()));
+                      boxUsers.put("auth", 1);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Logged in',

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:midterm_project_sanchez_liao/controller/auth_controller.dart';
 import 'package:midterm_project_sanchez_liao/enum/enum.dart';
+import 'package:midterm_project_sanchez_liao/models/box.dart';
 import 'package:midterm_project_sanchez_liao/routing/homeScreen.dart';
 import 'package:midterm_project_sanchez_liao/routing/profile.dart';
 import 'routing/login.dart';
@@ -25,13 +26,13 @@ class GlobalRouter {
 
   FutureOr<String?> handleRedirect(
       BuildContext context, GoRouterState state) async {
-    if (AuthController.I.state == AuthState.authenticated) {
+    if (boxUsers.get("auth") == 1) {
       if (state.matchedLocation == LoginScreen.route) {
         return HomeScreen.route;
       }
       return null;
     }
-    if (AuthController.I.state != AuthState.authenticated) {
+    if (boxUsers.get("auth") != 1) {
       if (state.matchedLocation == LoginScreen.route) {
         return null;
       }

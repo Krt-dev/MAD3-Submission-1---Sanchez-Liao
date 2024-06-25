@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:midterm_project_sanchez_liao/enum/enum.dart';
+import 'package:midterm_project_sanchez_liao/models/box.dart';
+import 'package:midterm_project_sanchez_liao/models/user.dart';
 
 class AuthController with ChangeNotifier {
   static void initialize() {
@@ -28,9 +30,21 @@ class AuthController with ChangeNotifier {
     }
   }
 
-  void logout() {}
+  void logout() {
+    if (boxUsers.isNotEmpty) {
+      boxUsers.deleteAt(0);
+      boxUsers.put("auth", 0);
+      state = AuthState.unauthenticated;
+      notifyListeners();
+    }
+  }
 
-  Future<void> loadSession(String dataBox) async {}
+  Future<void> loadSession() async {
+    if (boxUsers.getAt(0) != null && boxUsers.get("auth") == 1) {
+      User user = boxUsers.getAt(0);
+      login(user.username, user.password);
+    }
+  }
 }
 
 //mockup

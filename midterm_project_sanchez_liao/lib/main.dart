@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:midterm_project_sanchez_liao/controller/auth_controller.dart';
+import 'package:midterm_project_sanchez_liao/models/box.dart';
+import 'package:midterm_project_sanchez_liao/models/user.dart';
 import 'package:midterm_project_sanchez_liao/router.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   AuthController.initialize();
   GlobalRouter.initialize();
+  await Hive.initFlutter();
+  Hive.registerAdapter(UserAdapter());
+  boxUsers = await Hive.openBox("userBox");
   //await AuthController.I.loadSession();
   runApp(const MyApp());
 }
