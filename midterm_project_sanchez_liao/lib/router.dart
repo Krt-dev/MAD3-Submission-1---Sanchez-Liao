@@ -26,13 +26,15 @@ class GlobalRouter {
 
   FutureOr<String?> handleRedirect(
       BuildContext context, GoRouterState state) async {
-    if (boxUsers.get("auth") == 1) {
+    if (boxUsers.get("auth") == 1 ||
+        AuthController.I.state == AuthState.authenticated) {
       if (state.matchedLocation == LoginScreen.route) {
         return HomeScreen.route;
       }
       return null;
     }
-    if (boxUsers.get("auth") != 1) {
+    if (boxUsers.get("auth") != 1 ||
+        AuthController.I.state != AuthState.authenticated) {
       if (state.matchedLocation == LoginScreen.route) {
         return null;
       }
